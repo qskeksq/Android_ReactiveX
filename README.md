@@ -1,12 +1,20 @@
 # RxJava & RxAndroid
 
-    어려워 보여도 결국 하는 일은 단순하다. 마치 서버가 복잡해 보여도 요청과 응답을 이해하는 것이 전부인 것과 비슷하다. 결국 데이터를 갖다가 어떻게 전달할지 문제이고, 거기서 데이터를 받아오는 곳과 받아온 데이터를 사용할 곳을 정하고, 언제 받아올지 정하면 되는 것이다. 받아올 곳이 등록될 때(subscribe) 받아올지, 발행 후 혹은 데이터를 다 받아오면(onNext, onComplete) 보내줄지 정해주면 된다. 데이터를 받아오는 곳을 Observable이라고 하고, 받아 쓰는 곳을 Subscriber라고 한다. 기존 Observer 패턴과 다른 점은 Observable의 인터페이스에서 onNext()외에 onComplete(), onError()가 존재한다는 것(Subscriber가 구현해야 하기 때문에 Subcriber가 가지고 있다고 해도 무방하다)
+    어려워 보여도 결국 하는 일은 단순하다. 마치 서버가 복잡해 보여도 요청과 응답을 이해하는 것이 전부인 것과 비슷하다. 
+    결국 데이터를 갖다가 어떻게 전달할지 문제이고, 거기서 데이터를 받아오는 곳과 받아온 데이터를 사용할 곳을 정하고, 언제 받아올지 정하면 되는 것이다. 
+    받아올 곳이 등록될 때(subscribe) 받아올지, 발행 후 혹은 데이터를 다 받아오면(onNext, onComplete) 보내줄지 정해주면 된다. 
+    데이터를 받아오는 곳을 Observable이라고 하고, 받아 쓰는 곳을 Subscriber라고 한다. 기존 Observer 패턴과 다른 점은 
+    Observable의 인터페이스에서 onNext()외에 onComplete(), onError()가 존재한다는 것(Subscriber가 구현해야 하기 때문에 
+    Subcriber가 가지고 있다고 해도 무방하다)
 
 ## 1. Observable & Observer
 
 ### (1) Observable 이해
 
-    기존 Observer 패턴에서 Subject의 역할을 Observable이 한다. 즉, 여러 observer들을로부터 구독받고(addObserver) 데이터를 발행하는 역할을 한다. Observable에 subscribe 하는 존재들이 observer들이다. 즉, Observable이라는 이름은 observer들이 observe할 수 있기 때문이다. 한마디로 Observable는 subscribe하는 존재, 각 observer들이 지켜보는 존재라는 뜻이다. 그렇다면 기존 옵저버 패턴과 어떤 점이 다를까. Subject에 함수 2 개가 추가된 것 밖에 없다. 기존의 옵저버 패턴도 스트림으로 데이터 처리가 가능하다.
+    기존 Observer 패턴에서 Subject의 역할을 Observable이 한다. 즉, 여러 observer들을로부터 구독받고(addObserver) 데이터를 발행하는 역할을 한다. 
+    Observable에 subscribe 하는 존재들이 observer들이다. 즉, Observable이라는 이름은 observer들이 observe할 수 있기 때문이다. 
+    한마디로 Observable는 subscribe하는 존재, 각 observer들이 지켜보는 존재라는 뜻이다. 그렇다면 기존 옵저버 패턴과 어떤 점이 다를까. 
+    Subject에 함수 2 개가 추가된 것 밖에 없다. 기존의 옵저버 패턴도 스트림으로 데이터 처리가 가능하다.
 
 - create : Observable 생성
 - subscribe : Observer의 구독
@@ -87,7 +95,8 @@ private void createObservable() {
 
 ### (4) 구독시점과 발행시점의 차이에 따른 데이터 전달 여부
 
-    데이터가 발행되는 시점과 옵저버가 구독하는 시점이 항상 같을 수 없고, 미리 준비되어 있을 수만은 없다. 먼저 구독을 했고 그 후 발행이 될 수 있고, 발행이 먼저 진행되는 상황에서 구독이 일어날 수도 있다.
+    데이터가 발행되는 시점과 옵저버가 구독하는 시점이 항상 같을 수 없고, 미리 준비되어 있을 수만은 없다. 먼저 구독을 했고 그 후 발행이 될 수 있고, 
+    발행이 먼저 진행되는 상황에서 구독이 일어날 수도 있다.
 
 
 #### A. PublishSubject
